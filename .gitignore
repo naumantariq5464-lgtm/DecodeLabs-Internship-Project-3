@@ -12,11 +12,7 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-# Large files
-backend/dataset/
+# Precomputed models
 *.pkl
-*.csv
 
-# System files
-.DS_Store
 Thumbs.db

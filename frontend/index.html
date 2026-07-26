@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookWise AI — Intelligent Collaborative Book Recommendation System</title>
+    <meta name="description" content="Discover your next favorite book with AI-powered Collaborative Filtering recommendation engine based on user preferences and reading patterns.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="glow-bg">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="brand">
+                <i class="fa-solid fa-book-bookmark brand-icon"></i>
+                <span class="brand-text">Book<span class="gradient-text">Wise AI</span></span>
+            </a>
+            <div class="nav-links">
+                <a href="#hero" class="nav-link active"><i class="fa-solid fa-compass"></i> Discover</a>
+                <a href="#popular-section" class="nav-link"><i class="fa-solid fa-fire"></i> Popular Books</a>
+                <a href="#recommendations-section" class="nav-link" id="nav-rec-link" style="display:none;"><i class="fa-solid fa-wand-magic-sparkles"></i> Recommendations</a>
+            </div>
+            <div class="status-pill" id="api-status-badge">
+                <span class="status-dot online"></span>
+                <span id="api-status-text">AI Engine Online</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Hero Section -->
+        <section id="hero" class="hero-section">
+            <div class="hero-badge">
+                <i class="fa-solid fa-sparkles"></i> AI-Powered Collaborative Filtering
+            </div>
+            <h1 class="hero-title">Discover Books You'll <span class="gradient-text">Love Reading</span></h1>
+            <p class="hero-subtitle">
+                Enter any book title you enjoy. Our AI recommendation matrix analyzes thousands of user reading patterns to find your perfect next read.
+            </p>
+
+            <!-- Search Container -->
+            <div class="search-box-wrapper">
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input type="text" id="book-search-input" placeholder="Type a book title (e.g. Harry Potter, 1984, The Hobbit)..." autocomplete="off" />
+                    <button id="recommend-btn" class="btn btn-primary">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        <span>Recommend</span>
+                    </button>
+                </div>
+
+                <!-- Autocomplete Dropdown -->
+                <div id="autocomplete-list" class="autocomplete-dropdown hidden"></div>
+            </div>
+
+            <!-- Quick Suggestions Tags -->
+            <div class="quick-tags">
+                <span class="tag-label">Try searching:</span>
+                <button class="quick-tag" data-title="Harry Potter and the Sorcerer's Stone">Harry Potter</button>
+                <button class="quick-tag" data-title="1984">1984</button>
+                <button class="quick-tag" data-title="The Fellowship of the Ring (The Lord of the Rings, Part 1)">The Lord of the Rings</button>
+                <button class="quick-tag" data-title="To Kill a Mockingbird">To Kill a Mockingbird</button>
+                <button class="quick-tag" data-title="The Da Vinci Code">The Da Vinci Code</button>
+            </div>
+        </section>
+
+        <!-- Recommendations Result Section -->
+        <section id="recommendations-section" class="section hidden">
+            <div class="section-header">
+                <div>
+                    <h2 class="section-title"><i class="fa-solid fa-wand-magic-sparkles gradient-text"></i> Recommendations For You</h2>
+                    <p class="section-desc" id="recommendation-query-label">Based on your selection</p>
+                </div>
+                <button id="clear-rec-btn" class="btn btn-secondary btn-sm">
+                    <i class="fa-solid fa-xmark"></i> Clear Results
+                </button>
+            </div>
+
+            <!-- Searched Book Spotlight Card -->
+            <div id="searched-book-spotlight" class="spotlight-card hidden"></div>
+
+            <!-- Recommendations Grid -->
+            <div id="recommendations-grid" class="books-grid"></div>
+        </section>
+
+        <!-- Popular Books Section -->
+        <section id="popular-section" class="section">
+            <div class="section-header">
+                <div>
+                    <h2 class="section-title"><i class="fa-solid fa-fire text-amber"></i> Trending & Popular Books</h2>
+                    <p class="section-desc">Highest rated books across thousands of community readers</p>
+                </div>
+            </div>
+            
+            <div id="popular-books-grid" class="books-grid">
+                <!-- Loading Skeletons -->
+                <div class="skeleton-card"></div>
+                <div class="skeleton-card"></div>
+                <div class="skeleton-card"></div>
+                <div class="skeleton-card"></div>
+                <div class="skeleton-card"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Book Detail Modal -->
+    <div id="book-modal" class="modal-backdrop hidden">
+        <div class="modal-content glass-card">
+            <button id="close-modal-btn" class="modal-close"><i class="fa-solid fa-xmark"></i></button>
+            <div id="modal-body" class="modal-body">
+                <!-- Dynamic Modal Content -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <p>© 2026 BookWise AI. Powered by FastAPI & Scikit-Learn Collaborative Filtering.</p>
+            <p class="footer-subtext">Developed using the Book-Crossing Dataset.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
